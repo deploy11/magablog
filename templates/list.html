@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Postlar
+{% endblock title %}
+
+{% block content %}
+    
+<div style="display: flex;flex-direction: column;">
+    {% for blog in blog %}
+        <div class="card">
+            <img class="card-img-top" src="{{ blog.image.url }}" alt="">
+            <div class="card-header">
+                <span class="font-weight-bold"><a href=""><h2>{{ blog.title }}</h2></a></span>
+            </div>
+            <div class="card-body">
+                {{ blog.subtitle }}...<a href="{% url 'detail' blog.id %}">batafsil</a>
+            </div>
+            <div class="card-footer text-left text-muted">
+                <span class="text-muted">muallif: {{ blog.author }}</span>
+            </div>
+        </div>
+        <br />
+    {% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="card">
+    <img class="card-img-top" src="{{ blog.image.url }}" alt="">
+    <div class="card-header">
+        <span class="font-weight-bold"><a href=""><h2>{{ blog.title }}</h2></a></span>
+    </div>
+    <div class="card-body">
+        {{ blog.subtitle }}
+        <span>
+            {{ blog.body|safe }}
+        </span>
+        {% if request.user == blog.author %}
+            <a href="{% url 'article_edit' blog.pk %}">Tahrirlash</a>
+            <a href="{% url 'article_delete' blog.pk %}">O'chirish</a>
+            <a href="{% url 'list' %}">Barcha Bloglar</a>
+        {% else %}
+            <a href="{% url 'list' %}">Barcha Bloglar</a>
+        {% endif %}
+    </div>
+    <div class="card-footer text-left text-muted">
+        <span class="text-muted">muallif: {{ blog.author }}</span>
+    </div>
+</div>
+<br />
+
+{% endblock content %}
